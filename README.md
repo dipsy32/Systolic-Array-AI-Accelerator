@@ -27,7 +27,7 @@ Synthesized on **Xilinx Kintex-7 (XC7K70T)** using Vivado 2022.2.
 2.  **Systolic Mesh (4x4):**
     * Homogeneous grid with local interconnects (North-to-South for Inputs, West-to-East for Partial Sums).
 3.  **Skew Buffer:**
-    * Aligns parallel input data into a diagonal wavefront (Delay $T = Col\_Index$).
+    * Aligns parallel input data into a diagonal wavefront (Delay T = Col_Index).
 
 ## How to Use
 1.  **Vivado Setup:**
