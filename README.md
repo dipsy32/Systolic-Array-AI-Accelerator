@@ -16,8 +16,8 @@ Synthesized on **Xilinx Kintex-7 (XC7K70T)** using Vivado 2022.2.
 * **src/** – Verilog source files (`pe.v`, `systolic_array.v`, `matrix_accelerator.v`, `skew_buffer.v`).
 * **tb/** – Testbench modules (`tb_matrix_accelerator.v`, `tb_pe.v`).
 * **constraints/** – XDC file for timing constraints (100MHz target).
-* **snapshots/** – Waveform verification screenshots, utilization reports, and timing summaries.
-* **docs/** – Design documentation and block diagrams.
+* **snapshots/** – Utilization report, power report, and timing summaries.
+* **doc/** – Design documentation.
 
 ## Hardware Architecture
 1.  **Processing Element (PE):**
