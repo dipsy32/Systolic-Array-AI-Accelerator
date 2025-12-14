@@ -13,8 +13,6 @@ module systolic_array(
     // Grid Dimensions
     parameter ROWS = 4;
     parameter COLS = 4;
-
-    // Internal connecting wires
     // These 2D arrays store the connections BETWEEN PEs
     // wires_n[i][j] is the North input for PE at row i, col j
     wire signed [7:0]  conn_n [ROWS:0][COLS-1:0]; 
@@ -24,7 +22,7 @@ module systolic_array(
     genvar i, j;
 
     generate
-        // 1. Assign External Inputs to the boundary wires
+        // Assign External Inputs to the boundary wires
         for (j = 0; j < COLS; j = j + 1) begin : INPUT_MAP_N
             // Map the flat 32-bit input to the top row (Row 0)
             assign conn_n[0][j] = in_n[8*j +: 8]; 
@@ -35,7 +33,7 @@ module systolic_array(
             assign conn_w[i][0] = in_w[24*i +: 24];
         end
 
-        // 2. Instantiate the 4x4 Grid of PEs
+        // Instantiate the 4x4 Grid of PEs
         for (i = 0; i < ROWS; i = i + 1) begin : ROW_LOOP
             for (j = 0; j < COLS; j = j + 1) begin : COL_LOOP
                 
@@ -56,7 +54,7 @@ module systolic_array(
             end
         end
 
-        // 3. Assign Boundary Wires to External Outputs
+        // Assign Boundary Wires to External Outputs
         for (j = 0; j < COLS; j = j + 1) begin : OUTPUT_MAP_S
             // The South output of the last row (Row 4) goes out
             assign out_s[8*j +: 8] = conn_n[ROWS][j];
