@@ -27,13 +27,13 @@ module tb_matrix_accelerator;
         #20;
         rst = 0;
 
-        // ============================================
+       
         // PHASE 1: LOAD WEIGHTS (Identity Matrix)
-        // ============================================
+       
         $display("Loading Weights...");
         load_weight = 1;
         
-        // We load rows from Bottom to Top (like pushing a stack)
+        // We load rows from Bottom to Top
         // Row 3: 0 0 0 1
         activation_in = 32'h01000000; 
         #10;
@@ -54,16 +54,12 @@ module tb_matrix_accelerator;
         load_weight = 0;
         activation_in = 0;
         #20;
-
-        // ============================================
+        
         // PHASE 2: COMPUTE 
-        // ============================================
         $display("Streaming Input Vector [1, 1, 1, 1]...");
         
         // Input: 1, 1, 1, 1 (Hex: 01010101)
         activation_in = 32'h01010101;
-        
-        // Run for enough cycles for the wave to pass through the array
         #100;
         
         $finish;
