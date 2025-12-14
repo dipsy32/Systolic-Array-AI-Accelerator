@@ -32,16 +32,15 @@ module tb_systolic_array;
         #20;
         rst = 0;
         
-        // --- TEST FIX: KEEP INPUT CONSTANT ---
         $display("Test: Injecting 8'hAA into Column 0...");
         
-        // We keep this value constant. We do NOT set it to 0 afterwards.
+        // We keep this value constant. We don't set it to 0 afterwards.
         in_n = 32'h000000AA; 
         
         // Wait 60ns (plenty of time for 4 cycles to pass)
         #60; 
         
-        // Now check. Since input is constant, output should definitely be AA.
+        // Since input is constant, output should definitely be AA.
         if (out_s[7:0] === 8'hAA) 
             $display("SUCCESS: 0xAA reached the bottom of Column 0!");
         else
