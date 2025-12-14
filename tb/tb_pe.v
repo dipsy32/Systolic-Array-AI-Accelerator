@@ -24,7 +24,7 @@ module tb_pe;
         .out_e(out_e)
     );
 
-    // Clock generation (10ns period = 100MHz)
+    
     always #5 clk = ~clk;
 
     initial begin
@@ -39,7 +39,7 @@ module tb_pe;
         #20;
         rst = 0;
         
-        // --- TEST CASE 1: LOAD WEIGHT ---
+        // TEST CASE 1: LOAD WEIGHT
         // We want to load a weight of 5 into the PE
         $display("Time: %0t | Test Case 1: Loading Weight 5", $time);
         load_weight = 1;
@@ -48,7 +48,7 @@ module tb_pe;
         
         #10; // Wait for one clock edge
         
-        // --- TEST CASE 2: COMPUTE (Positive) ---
+        // TEST CASE 2: COMPUTE (Positive)
         // Weight is now 5. Let's input 2 from North.
         // Expected Psum = 0 (from West) + (2 * 5) = 10
         $display("Time: %0t | Test Case 2: Compute 2 * 5", $time);
@@ -58,7 +58,7 @@ module tb_pe;
         
         #10;
         
-        // --- TEST CASE 3: ACCUMULATE (Positive) ---
+        // TEST CASE 3: ACCUMULATE (Positive)
         // Weight is still 5. Let's input 3 from North.
         // Let's pretend previous PE sent us a partial sum of 10.
         // Expected Psum = 10 (from West) + (3 * 5) = 25
@@ -68,7 +68,7 @@ module tb_pe;
 
         #10;
 
-        // --- TEST CASE 4: SIGNED ARITHMETIC (Negative) ---
+        // TEST CASE 4: SIGNED ARITHMETIC (Negative)
         // Let's reload a negative weight: -4
         $display("Time: %0t | Test Case 4: Reload Weight -4", $time);
         load_weight = 1;
