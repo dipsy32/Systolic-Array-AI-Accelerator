@@ -2,7 +2,7 @@
 
 module skew_buffer(
     input wire clk,
-    input wire rst,              // <--- ADDED RESET
+    input wire rst,             
     input wire [31:0] raw_input, 
     output wire [31:0] skewed_output 
     );
@@ -18,7 +18,6 @@ module skew_buffer(
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            // <--- ADDED RESET LOGIC
             d1_1 <= 0;
             d2_1 <= 0; d2_2 <= 0;
             d3_1 <= 0; d3_2 <= 0; d3_3 <= 0;
