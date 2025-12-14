@@ -11,12 +11,12 @@ module matrix_accelerator(
     wire [31:0] skewed_activations;
     wire [95:0] zero_west_input;
     
-    // Internal wire for the selected input
+
     wire [31:0] array_input_n;
 
     assign zero_west_input = 96'd0;
 
-    // 1. Instantiate Skew Buffer (Always running)
+    // Instantiate Skew Buffer
     skew_buffer skew_unit (
         .clk(clk),
         .rst(rst),
@@ -24,17 +24,16 @@ module matrix_accelerator(
         .skewed_output(skewed_activations)
     );
 
-    // 2. THE FIX: MUX LOGIC
-    // If loading weights, use RAW input (bypass skew).
-    // If computing, use SKEWED input.
+    // MUX LOGIC
+    // If loading weights, use RAW input. If computing, use SKEWED input.
     assign array_input_n = (load_weight) ? activation_in : skewed_activations;
 
-    // 3. Instantiate the Systolic Array
+    // Instantiate the Systolic Array
     systolic_array array_core (
         .clk(clk),
         .rst(rst),
         .load_weight(load_weight),
-        .in_n(array_input_n),      // <--- Connect the MUX output here
+        .in_n(array_input_n),      
         .in_w(zero_west_input),   
         .out_s(),                  
         .out_e(result_out)         
